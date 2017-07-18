@@ -1,0 +1,5 @@
+create database mybatis;
+use mybatis;
+CREATE TABLE users(id INT PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(20), age INT);
+INSERT INTO users(NAME, age) VALUES('Jo Chen', 21);
+INSERT INTO users(NAME, age) VALUES('Jo Ma', 21);
