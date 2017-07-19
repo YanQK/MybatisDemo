@@ -7,24 +7,37 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 public class MybatisUtil {
 
-    public static SqlSession getSqlSession(boolean AutoCommit){
+    /**
+     * 获取 SqlSession 工厂
+     * @return
+     */
+    public static SqlSessionFactory getSqlSessionFactory() {
 
-        SqlSession sqlSession = null;
-
+        SqlSessionFactory factory = null;
         String resource = "mybatis-config.xml";
+        InputStream is = null;
+
         try {
-            InputStream inputStream = Resources.getResourceAsStream(resource);
-            SqlSessionFactory sqlSessionBuild = new SqlSessionFactoryBuilder().build(inputStream);
-            sqlSession = sqlSessionBuild.openSession(AutoCommit);
+            is = Resources.getResourceAsStream(resource);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return sqlSession;
+
+        factory = new SqlSessionFactoryBuilder().build(is);
+        return factory;
     }
 
-
+    /**
+     * 获取 SqlSession 对象    [判断是否自动提交]
+     * @param isAutoCommit   是否自动提交
+     * @return
+     */
+    public static SqlSession getSqlSession(boolean isAutoCommit) {
+        return getSqlSessionFactory().openSession(isAutoCommit);
+    }
 
 }

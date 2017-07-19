@@ -3,23 +3,23 @@
 
 <mapper namespace="userMapper">
 
-    <insert id="addUser" parameterType="com.gs.mybatis.bean.User">
+    <insert id="addUser" parameterType="_User">
         insert into user(name,age) values(#{name},#{age})
     </insert>
 
-    <select id="retrieveUser" parameterType="int" resultType="com.gs.mybatis.bean.User">
+    <select id="retrieveUser" parameterType="int" resultType="_User">
         select * from User where id=#{id}
     </select>
 
-    <select id="retrieveAllUser" resultType="com.gs.mybatis.bean.User">
+    <select id="retrieveAllUser" resultType="_User">
         select * from User
     </select>
 
-    <update id="updateUser" parameterType="com.gs.mybatis.bean.User">
+    <update id="updateUser" parameterType="_User">
         update user set name=#{name},age=#{age} where id=#{id}
     </update>
 
-    <delete id="deleteUser" parameterType="com.gs.mybatis.bean.User">
+    <delete id="deleteUser" parameterType="_User">
         delete from user where name=#{name}
     </delete>
 
